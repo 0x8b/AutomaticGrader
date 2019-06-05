@@ -9,8 +9,10 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.SurfaceView;
@@ -56,9 +58,15 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
         mat1 = inputFrame.rgba();
 
-        Core.transpose(mat1, mat2);
-        Imgproc.resize(mat2, mat3, mat1.size(),0,0,0);
-        Core.flip(mat3, mat1, 1);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Core.transpose(mat1, mat2);
+
+            float scale = (float)mat1.rows() / (float)mat1.cols();
+            Imgproc.resize(mat2, mat3, new Size(), scale, scale, 0);
+
+            int offset_x = (mat3.cols() - mat1.cols()) / 2;
+            Core.flip(mat3.colRange(offset_x, offset_x + mat1.cols()).rowRange(0, mat1.rows()), mat1, 1);
+        }
 
         return mat1;
     }
