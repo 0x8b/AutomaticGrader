@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cameraBridgeViewBase = (JavaCameraView)findViewById(R.id.my_camera_view);
+        cameraBridgeViewBase = (JavaCameraView) findViewById(R.id.my_camera_view);
         cameraBridgeViewBase.setVisibility(SurfaceView.VISIBLE);
         cameraBridgeViewBase.setCvCameraViewListener(this);
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             Core.transpose(mat1, mat2);
 
-            float scale = (float)mat1.rows() / (float)mat1.cols();
+            float scale = (float) mat1.rows() / (float) mat1.cols();
             Imgproc.resize(mat2, mat3, new Size(), scale, scale, 0);
 
             int offset_x = (mat3.cols() - mat1.cols()) / 2;
