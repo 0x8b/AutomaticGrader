@@ -31,11 +31,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ImageProcessor"
+        <activity
+            android:name=".ImageProcessor"
+            android:configChanges="orientation|keyboardHidden"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="landscape"
-            android:configChanges="orientation|keyboardHidden">
-        </activity>
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".KeyManager"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

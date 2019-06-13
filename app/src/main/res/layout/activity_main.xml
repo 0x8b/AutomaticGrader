@@ -1,73 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+
+    android:padding="16dp"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/edittext1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
-
-    <EditText
-        android:id="@+id/edittext2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edittext1"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:inputType="number" />
-
     <TextView
-        android:id="@+id/textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_below="@id/edittext2"/>
+        android:text="@string/key"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/etxt_key"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textview"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Activity 1"
-        android:textSize="30sp" />
+        android:layout_marginTop="16dp" />
 
     <Button
-        android:id="@+id/apply"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text"
-        android:layout_centerHorizontal="true"
-        android:text="Apply text" />
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        android:onClick="saveLastKey"
+        android:text="@string/save"
+        android:textAllCaps="true" />
 
     <Button
-        android:id="@+id/button_save"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_manage"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/apply"
-        android:layout_centerHorizontal="true"
-        android:text="Save" />
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        android:onClick="openKeyManagerActivity"
+        android:text="@string/manage_key"
+        android:textAllCaps="true" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_scan"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/button_save"
-        android:layout_centerHorizontal="true"
-        android:text="Open Activity 2" />
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:onClick="openImageProcessorActivity"
+        android:text="@string/scan"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white" />
 
-</RelativeLayout>
+</LinearLayout>

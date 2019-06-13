@@ -46,17 +46,19 @@ public class ImageProcessor extends AppCompatActivity implements CameraBridgeVie
     MatOfPoint2f approxCurve;
     MatOfPoint2f docCnt;
 
+    String key;
+
     HashMap<Integer, Integer> answers = new HashMap();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_processor);
+        setTitle(R.string.scan);
 
         Intent intent = getIntent();
 
-        String text = intent.getStringExtra(MainActivity.EXTRA_TEXT);
-        int number  = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 0);
+        key = intent.getStringExtra(MainActivity.EXTRA_KEY);
 
         cameraBridgeViewBase = (JavaCameraView) findViewById(R.id.my_camera_view);
         cameraBridgeViewBase.setVisibility(SurfaceView.VISIBLE);

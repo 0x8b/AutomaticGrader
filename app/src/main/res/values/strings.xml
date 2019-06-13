@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">OpenCVProject</string>
+    <string name="app_name">Ocenianko</string>
+    <string name="scan">Skanuj</string>
+    <string name="manage_key">Zarządzanie kluczami</string>
+    <string name="save">Zapisz klucz</string>
+    <string name="key">Klucz:</string>
 </resources>
