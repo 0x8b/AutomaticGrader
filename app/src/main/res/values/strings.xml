@@ -1,7 +1,17 @@
 <resources>
-    <string name="app_name">Ocenianko</string>
-    <string name="scan">Skanuj</string>
+    <string name="scanning">Skanowanie</string>
     <string name="manage_key">Zarządzanie kluczami</string>
-    <string name="save">Zapisz klucz</string>
-    <string name="key">Klucz:</string>
+    <string name="key">Aktualny klucz:</string>
+    <string name="answer_key">Klucz odpowiedzi:</string>
+    <string name="number_of_answers">Liczba odpowiedzi:</string>
+    <string name="number_of_questions">Liczba pytań:</string>
+    <string name="sample_number_of_answers">5</string>
+    <string name="sample_answer_key">ac(ab)e</string>
+    <string name="sample_number_of_questions">4</string>
+    <string name="save">Zapisz</string>
+    <string name="app_name">Ocenianie</string>
+    <string name="creating_key">Tworzenie klucza</string>
+    <string name="name">Nazwa:</string>
+    <string name="sample_name">Test 17.06.2019</string>
+    <string name="check_and_save">Sprawdź i zapisz</string>
 </resources>

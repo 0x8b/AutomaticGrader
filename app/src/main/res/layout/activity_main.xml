@@ -14,16 +14,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/key"
-        android:textAlignment="center"
         android:textSize="24sp" />
 
-    <EditText
+    <TextView
+        android:id="@+id/txt_key_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:text=""
+        android:textSize="24sp" />
+
+    <!--<EditText
         android:id="@+id/etxt_key"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp" />-->
 
-    <Button
+    <!--<Button
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,15 +38,15 @@
         android:background="@android:color/darker_gray"
         android:onClick="saveLastKey"
         android:text="@string/save"
-        android:textAllCaps="true" />
+        android:textAllCaps="true" />-->
 
     <Button
         android:id="@+id/btn_manage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:background="@android:color/darker_gray"
-        android:onClick="openKeyManagerActivity"
+        android:onClick="openKeyManager"
         android:text="@string/manage_key"
         android:textAllCaps="true" />
 
@@ -50,7 +57,7 @@
         android:layout_marginTop="16dp"
         android:background="@color/colorPrimary"
         android:onClick="openImageProcessorActivity"
-        android:text="@string/scan"
+        android:text="@string/scanning"
         android:textAllCaps="true"
         android:textColor="@android:color/white" />
 

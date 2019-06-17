@@ -18,19 +18,23 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.widget.Toast;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 
 public class ImageProcessor extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
@@ -47,18 +51,29 @@ public class ImageProcessor extends AppCompatActivity implements CameraBridgeVie
     MatOfPoint2f docCnt;
 
     String key;
+    Integer num_of_questions, num_of_answers;
+    List<Set<Integer>> ans = new ArrayList<>();
 
-    HashMap<Integer, Integer> answers = new HashMap();
+    //HashMap<Integer, Integer> answers = new HashMap();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_processor);
-        setTitle(R.string.scan);
+
+        setTitle(R.string.scanning);
 
         Intent intent = getIntent();
 
-        key = intent.getStringExtra(MainActivity.EXTRA_KEY);
+        key = intent.getStringExtra(MainActivity.ANSWER_KEY);
+        num_of_questions = intent.getIntExtra(MainActivity.NUM_OF_QUESTIONS, 5);
+        num_of_answers = intent.getIntExtra(MainActivity.NUM_OF_ANSWERS, 5);
+
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Set<Integer>>>() {}.getType();
+        ans = gson.fromJson(intent.getStringExtra(MainActivity.SERIALIZED), type);
+
+        setTitle(ans.toString());
 
         cameraBridgeViewBase = (JavaCameraView) findViewById(R.id.my_camera_view);
         cameraBridgeViewBase.setVisibility(SurfaceView.VISIBLE);
@@ -234,9 +249,9 @@ public class ImageProcessor extends AppCompatActivity implements CameraBridgeVie
                     colors.add(new Scalar(0, 0, 255, 255));
                     colors.add(new Scalar(255, 0, 255, 255));
 
-                    if (questions.size() == 25) {
-                        for (int i = 0; i < 5; i++) {
-                            List<Tuple<MatOfPoint, Rect>> line = questions.subList(5 * i, 5 * i + 5);
+                    if (questions.size() == num_of_questions * num_of_answers) {
+                        for (int i = 0; i < num_of_questions; i++) {
+                            List<Tuple<MatOfPoint, Rect>> line = questions.subList(num_of_answers * i, num_of_answers * i + num_of_answers);
 
                             Collections.sort(line, new Comparator<Tuple<MatOfPoint, Rect>>() {
                                 @Override
@@ -252,7 +267,7 @@ public class ImageProcessor extends AppCompatActivity implements CameraBridgeVie
 
                             //Core.countNonZero()
 
-                            for (int j = 0; j < 5; j++) {
+                            for (int j = 0; j < num_of_answers; j++) {
                                 //mask.setTo(new Scalar(0));
                                 Mat mask = new Mat(thresh.rows(), thresh.cols(), CvType.CV_8U, Scalar.all(0));
 
@@ -266,14 +281,16 @@ public class ImageProcessor extends AppCompatActivity implements CameraBridgeVie
                                 }
                             }
 
-                            boolean correct = answers.get(i).equals(user_answer);
+                            // boolean correct = answers.get(i).equals(user_answer);
 
-                            Imgproc.drawContours( warped, Arrays.asList(new MatOfPoint(line.get(answers.get(i).intValue()).first.toArray())), 0, new Scalar(0, 255, 0, 255), 2);
+                            boolean correct = ans.get(i).contains(user_answer);
 
-                            if (!correct) {
+                            if (correct) {
+                                //Imgproc.drawContours( warped, Arrays.asList(new MatOfPoint(line.get(answers.get(i).intValue()).first.toArray())), 0, new Scalar(0, 255, 0, 255), 2);
+                                Imgproc.drawContours( warped, Arrays.asList(new MatOfPoint(line.get(user_answer).first.toArray())), 0, new Scalar(0, 255, 0, 255), 2);
+                            } else {
                                 Imgproc.drawContours( warped, Arrays.asList(new MatOfPoint(line.get(user_answer).first.toArray())), 0, new Scalar(255, 0, 0, 255), 2);
                             }
-
                         }
                     }
 
@@ -354,11 +371,11 @@ public class ImageProcessor extends AppCompatActivity implements CameraBridgeVie
 
         warped = new Mat(width, height, CvType.CV_8UC4);
 
-        answers.put(0, 1);
-        answers.put(1, 4);
-        answers.put(2, 0);
-        answers.put(3, 4);
-        answers.put(4, 1);
+        //answers.put(0, 1);
+        //answers.put(1, 4);
+        //answers.put(2, 0);
+        //answers.put(3, 4);
+        //answers.put(4, 1);
     }
 
     @Override

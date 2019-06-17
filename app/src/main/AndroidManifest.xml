@@ -39,6 +39,9 @@
         <activity
             android:name=".KeyManager"
             android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".KeyManagerActivity"
+            android:parentActivityName=".KeyManager"></activity>
     </application>
 
 </manifest>
