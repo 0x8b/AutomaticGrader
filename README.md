@@ -2,7 +2,16 @@
 
 ## Opis
 
-Aplikacja pozwala na automatyczne ocenianie, na podstawie odpowiedzi na arkuszu. Istnieje możliwość zarządzania kluczami. Klucz zawiera nazwę, klucz właściwy, ilość pytań oraz ilość możliwych odpowiedzi na pytanie. Pytania mogą być wielokrotnego wyboru. Całość została zintegrowana z Firestore a część wizyjna powstała dzięki bibliotece OpenCV na system Android.
+Aplikacja pozwala na:
+
+- ocenianie wg. wybranego klucza,
+- zarządznia kluczami (dodawanie, edycja, usuwanie),
+- ocenianie pytań z wieloma poprawnymi odpowiedziami,
+- przechwytywanie arkusza z odpowiedziami z relatywnie szerokiego zakresu kątów.
+
+Klucz zawiera nazwę, klucz właściwy, ilość pytań oraz ilość możliwych odpowiedzi na pytanie. Baza z kluczami jest przechowywana w Firestore.
+
+Część wizyjna została zrealizowana za pomocą biblioteki OpenCV.
 
 ## Zrzuty ekranu
 
